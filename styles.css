@@ -65,6 +65,31 @@ body {
   background: #e53935;
 }
 
+/* Ícono de usuario en el navbar */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.user-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 1.3em;
+  color: #222;
+}
+
+.user-icon:hover {
+  background: #ccc;
+}
+
 /* HERO SECTION */
 .hero {
   width: 100%;
@@ -301,27 +326,37 @@ body {
   }
 }
 
-.consulta-section {
+.consulta-section.seccion-full {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f6f6;
+  padding: 0;
+}
+
+.consulta-card {
   background: #262424;
   color: #fff;
-  border-radius: 16px;
-  max-width: 1120px;
-  margin: 24px auto 0 auto;
-  padding: 36px 24px 48px 24px;
+  border-radius: 20px;
+  max-width: 1200px;
+  width: 90%;
+  padding: 48px 32px 48px 32px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
-.consulta-section h2 {
-  font-size: 2em;
+.consulta-card h2 {
+  font-size: 2.2em;
   font-weight: 400;
   margin-bottom: 24px;
 }
 
-.consulta-section p {
-  max-width: 600px;
+.consulta-card p {
+  max-width: 700px;
   margin: 0 auto 32px auto;
   font-size: 1.1em;
   color: #e0e0e0;
@@ -365,8 +400,8 @@ body {
 }
 
 @media (max-width: 700px) {
-  .consulta-section {
-    padding: 24px 8px 32px 8px;
+  .consulta-card {
+    padding: 24px 8px;
   }
   .consulta-actions {
     flex-direction: column;
@@ -635,4 +670,169 @@ body {
   .footer-divider {
     display: none;
   }
+}
+
+/* Popup de registro */
+.user-popup {
+  display: none; /* Cambia a flex para mostrar */
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.user-form {
+  background: #fff;
+  padding: 32px 28px 24px 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  min-width: 320px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user-form h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.3em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.user-form label {
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.user-form input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+
+.user-form button {
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.user-form button:hover {
+  background: #333;
+}
+
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 1.5em;
+  color: #888;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.close-popup:hover {
+  color: #e53935;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.contact-form {
+  background: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 32px 28px 24px 28px;
+  max-width: 500px;
+  margin: 40px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-form label {
+  font-weight: 500;
+  color: #222;
+  font-size: 1em;
+}
+
+.contact-form input,
+.contact-form textarea {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1em;
+  background: #f6f6f6;
+  transition: border 0.2s;
+  resize: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border: 1.5px solid #111;
+  outline: none;
+  background: #fff;
+}
+
+.form-btn {
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.form-btn:hover {
+  background: #333;
+}
+
+@media (max-width: 600px) {
+  .contact-form {
+    padding: 18px 8px;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.seccion-full {
+  min-height: 100vh; /* Ocupa al menos toda la altura de la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center;     /* Centra horizontalmente */
+  box-sizing: border-box;
+  padding-top: 48px;  /* Espacio para el navbar si es fijo */
+  padding-bottom: 48px;
 }
