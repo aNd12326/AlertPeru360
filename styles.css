@@ -295,13 +295,17 @@ body {
 @media (max-width: 900px) {
   .hero-content {
     flex-direction: column;
+    align-items: center;
+    padding: 0 8px;
     min-height: unset;
   }
-  .hero-text, .hero-image {
-    padding: 24px 12px;
-    border-radius: 0;
+  .hero-text {
+    padding: 32px 8px 16px 8px;
+    align-items: center;
+    text-align: center;
   }
   .hero-image img {
+    max-width: 90vw;
     min-width: 0;
     border-radius: 0 0 16px 16px;
   }
@@ -312,8 +316,12 @@ body {
   .info-content {
     flex-direction: column;
     align-items: center;
-    gap: 32px;
-    padding: 0 16px;
+    gap: 24px;
+    padding: 0 8px;
+  }
+  .info-text {
+    align-items: center;
+    text-align: center;
   }
   .info-image-block {
     align-items: center;
@@ -402,6 +410,7 @@ body {
 @media (max-width: 700px) {
   .consulta-card {
     padding: 24px 8px;
+    width: 98vw;
   }
   .consulta-actions {
     flex-direction: column;
@@ -600,6 +609,14 @@ body {
   }
   .contact-section {
     padding: 32px 8px 24px 8px;
+  }
+  .contact-form {
+    padding: 18px 8px;
+    width: 98vw;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 0;
   }
 }
 
@@ -835,4 +852,19 @@ html {
   box-sizing: border-box;
   padding-top: 48px;  /* Espacio para el navbar si es fijo */
   padding-bottom: 48px;
+}
+
+/* NAVBAR */
+@media (max-width: 900px) {
+  .navbar-content {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 8px;
+  }
+  .nav-links {
+    gap: 16px;
+  }
+  .navbar-actions {
+    gap: 10px;
+  }
 }
