@@ -1,7 +1,17 @@
-body {
+body, html {
+  width: 100%;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #f4f4f4; /* o el color de fondo general */
   font-family: 'Inter', Arial, sans-serif;
-  background: #f4f4f4;
+}
+
+.main-container, .navbar-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .navbar {
@@ -866,5 +876,25 @@ html {
   }
   .navbar-actions {
     gap: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  body, html {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .main-container, .navbar-content {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .hero, .info-section, .consulta-section, .noticias-section, .contact-section, .footer {
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
   }
 }
