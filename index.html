@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>AlertPerú360</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- incluimos libreria para algunos iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -13,14 +14,23 @@
     <header class="navbar">
         <div class="navbar-content">
             <div class="logo">
-                <!-- <img src="https://cdn-icons-png.flaticon.com/512/197/197563.png" alt="Logo" /> -->
                 <img src="logo.jpg" alt="Logo" />
             </div>
-            <nav class="nav-links">
+            
+            <!-- Boton en versiones solo mobile -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Menu de navegaciones -->
+            <nav class="nav-links" id="navLinks">
                 <a href="#inicio">Inicio</a>
                 <a href="#zonas-riesgo">Mapas de Riesgo</a>
                 <a href="#noticias">Recursos</a>
             </nav>
+            <!-- avatar user para el uso de auth a futuro -->
             <div class="navbar-actions">
                 <button class="contact-btn"><a href="#contacto" style="color:inherit;text-decoration:none;">Contáctenos →</a></button>
                 <span class="user-icon" id="userIcon">
@@ -29,6 +39,9 @@
             </div>
         </div>
     </header>
+   
+    <div class="mobile-overlay" id="mobileOverlay"></div>  <!-- opacidad para el menu mobile y fondo para cuando se use el menu mobile-->
+    
     <section class="hero seccion-full" id="inicio">
         <div class="hero-content">
             <div class="hero-text">
@@ -57,12 +70,12 @@
     <section class="info-section seccion-full" id="info">
         <div class="info-content">
             <div class="info-text">
-                <h2>Protege a Tu Comunidad con Información Precisa</h2>
+                <h2>Protege a Tu Comunidad con Informacion Precisa</h2>
                 <p>
                     Accede a mapas de riesgo actualizados, recibe alertas tempranas y aprende cómo prepararte ante
                     emergencias. AlertaPerú360 te brinda las herramientas para proteger a tu familiar y vecinos.
                 </p>
-                <button class="info-btn">Aprende Más</button>
+                <button class="info-btn">Aprende Mas</button>
             </div>
             <div class="info-image-block">
                 <!-- <img class="info-img"
@@ -157,10 +170,10 @@
             equipo te brindará el soporte que necesitas.
         </p>
         <div class="contact-list">
-            <!-- Soporte técnico -->
+            <!-- Soporte tecnico -->
             <div class="contact-item">
                 <div class="contact-icon">
-                    <!-- Mensaje (puedes usar SVG o Font Awesome) -->
+                    <!-- svg para mensajeria -->
                     <svg width="36" height="36" fill="none" stroke="#111" stroke-width="2" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="10" />
                         <path d="M8 15c1.333-1 4.667-1 6 0" />
@@ -176,7 +189,7 @@
             <!-- Consultas Generales -->
             <div class="contact-item">
                 <div class="contact-icon">
-                    <!-- Sobre (puedes usar SVG o Font Awesome) -->
+                    <!-- svg para sobre(iconos) -->
                     <svg width="36" height="36" fill="none" stroke="#111" stroke-width="2" viewBox="0 0 24 24">
                         <rect x="3" y="7" width="18" height="10" rx="2" />
                         <path d="M3 7l9 6 9-6" />
@@ -188,10 +201,11 @@
                     <a href="#" class="contact-link">Obtener soporte →</a>
                 </div>
             </div>
-            <!-- Línea de Emergencia -->
+            
+            <!-- svg para soporte -->
             <div class="contact-item">
                 <div class="contact-icon">
-                    <!-- Teléfono (puedes usar SVG o Font Awesome) -->
+                    <!-- svg par telefono -->
                     <svg width="36" height="36" fill="none" stroke="#111" stroke-width="2" viewBox="0 0 24 24">
                         <path
                             d="M22 16.92V19a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13.81.36 1.6.68 2.34a2 2 0 0 1-.45 2.11l-.27.27a16 16 0 0 0 6.29 6.29l.27-.27a2 2 0 0 1 2.11-.45c.74.32 1.53.55 2.34.68A2 2 0 0 1 22 16.92z" />
@@ -227,9 +241,8 @@
         <div class="footer-bottom">
             <nav class="footer-nav">
                 <a href="#">Inicio</a>
-                <a href="#">Mapas de Riesgo</a>
-                <a href="#">Recursos</a>
-                <a href="#">Términos y Condiciones</a>
+                <a href="#zonas-riesgo">Mapas de Riesgo</a>
+                <a href="#noticias">Recursos</a>
                 <a href="#">Contacto</a>
             </nav>
             <span class="footer-divider">|</span>
@@ -243,6 +256,48 @@
             ©2025 AlertaPerú360 - Todos los derechos reservados .
         </div>
     </footer>
+    
+    <script>
+        // JS para el uso del menu solo en version mobile mobile
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            // toggle para añadir la clase tal.. en el icono de abrir y cerrar el menu mobile
+            navLinks.classList.toggle('nav-active');
+            mobileMenuBtn.classList.toggle('hamburger-active');
+            mobileOverlay.classList.toggle('active');
+        });
+        
+        // Cerrar el menu al hacer clic en las navs
+        mobileOverlay.addEventListener('click', function() {
+            // aqui solo se remueven las clases ya establecidas
+            navLinks.classList.remove('nav-active');
+            mobileMenuBtn.classList.remove('hamburger-active');
+            mobileOverlay.classList.remove('active');
+        });
+        
+        // Cerrar menu al hacer clic en un enlace como inicio, mapas , etc..
+        const navLinksItems = navLinks.querySelectorAll('a');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('nav-active');
+                mobileMenuBtn.classList.remove('hamburger-active');
+                mobileOverlay.classList.remove('active');
+            });
+        });
+        
+        // Cerrar menu al redimensionar la ventana como al cambiar a desktop, cerrando la version mobile, usado en el navegador y aplicados en mobiles
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('nav-active');
+                mobileMenuBtn.classList.remove('hamburger-active');
+                mobileOverlay.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 
 </html>
