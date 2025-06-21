@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>AlertPerú360</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+    <link rel="stylesheet" href="/public/assets/styles/styles.css">
     <!-- incluimos libreria para algunos iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +15,10 @@
     <header class="navbar">
         <div class="navbar-content">
             <div class="logo">
-                <img src="logo.jpg" alt="Logo" />
+                <img src="/public/assets/images/logo.jpg" alt="Logo" />
             </div>
             
-            <!-- Boton en versiones solo mobile -->
+            <!-- Boton en versiones solo mobiles -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
@@ -63,7 +64,7 @@
             <div class="hero-image">
                 <!-- <img src="https://as2.ftcdn.net/v2/jpg/01/16/13/94/1000_F_116139420_2QwQn6QwQn6QwQn6QwQn6QwQn6QwQn6.jpg"
                     alt="Mapa Perú"> -->
-                <img src="mapa-portada.png">
+                <img src="/public/assets/images/mapa-portada.png">
             </div>
         </div>
     </section>
@@ -81,7 +82,7 @@
                 <!-- <img class="info-img"
                     src="https://upload.wikimedia.org/wikipedia/commons/9/99/Monumento_a_Francisco_Bolognesi_en_Lima.jpg"
                     alt="Bandera Perú"> -->
-                    <img src="info.png">
+                    <img src="/public/assets/images/info.png">
                 <div class="info-card">
                     <span class="info-icon">🛡️</span>
                     <div>
@@ -257,47 +258,7 @@
         </div>
     </footer>
     
-    <script>
-        // JS para el uso del menu solo en version mobile mobile
-        // Menu mobile
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        const mobileOverlay = document.getElementById('mobileOverlay');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            // toggle para añadir la clase tal.. en el icono de abrir y cerrar el menu mobile
-            navLinks.classList.toggle('nav-active');
-            mobileMenuBtn.classList.toggle('hamburger-active');
-            mobileOverlay.classList.toggle('active');
-        });
-        
-        // Cerrar el menu al hacer clic en las navs
-        mobileOverlay.addEventListener('click', function() {
-            // aqui solo se remueven las clases ya establecidas
-            navLinks.classList.remove('nav-active');
-            mobileMenuBtn.classList.remove('hamburger-active');
-            mobileOverlay.classList.remove('active');
-        });
-        
-        // Cerrar menu al hacer clic en un enlace como inicio, mapas , etc..
-        const navLinksItems = navLinks.querySelectorAll('a');
-        navLinksItems.forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.classList.remove('nav-active');
-                mobileMenuBtn.classList.remove('hamburger-active');
-                mobileOverlay.classList.remove('active');
-            });
-        });
-        
-        // Cerrar menu al redimensionar la ventana como al cambiar a desktop, cerrando la version mobile, usado en el navegador y aplicados en mobiles
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                navLinks.classList.remove('nav-active');
-                mobileMenuBtn.classList.remove('hamburger-active');
-                mobileOverlay.classList.remove('active');
-            }
-        });
-    </script>
+    <script src="/public/assets/scripts/main.js"></script>
 </body>
 
 </html>
