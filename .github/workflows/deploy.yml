@@ -4,6 +4,9 @@ on:
   push:
     branches: [main] # rama main
 
+permissions:
+  contents: write
+
 jobs:
   deploy-alertaperu360:
     runs-on: ubuntu-latest # github usara una mauina virtual en un entorno Ubuntu para ejecutar los pasos
