@@ -12,11 +12,17 @@ una vez que esto se ejecuta correctamente, github pages sirve el sitio desde la 
 `https://and12326.github.io/AlertPeru360/` 
 
 
-/public
-/public/assets
-/public/assets/styles/styles.css
-/public/assets/images/<>.png/.jpg
-/public/assets/scripts/main.js
+estructura de carpetas utilizada en el proyecto:
+
+- public/
+  - assets/
+    - styles/
+      - styles.css
+    - scripts/
+      - main.js
+    - images/
+      - logo.png
+      - fondo.jpg
 tambien estructuramos el proyecto usando como carpeta principal /public -> /public/<otras carpetas> para tener un codigo mas ordenado
 
 Esto es solo un avance de nuestra landing page, a futuro estamos planteando aplicar auth para nuestros usuarios con verificacion de correo y entre otras funcionalidades
