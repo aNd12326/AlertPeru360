@@ -1,0 +1,152 @@
+/* login.css */
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .login-container {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .login-container h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #141414;
+  }
+  
+  .login-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .login-container input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .login-container input:focus {
+    outline: none;
+    border-color: #141414;
+  }
+  
+  .login-container button {
+    width: 100%;
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-container .register-link {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .login-container .register-link a {
+    color: #141414;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .login-container .register-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .logo-wrapper {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .logo-wrapper img {
+    width: 120px;
+    height: auto;
+    border-radius: 20px;
+  }
+  
+  .login-form h2 {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: #111;
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  
+  .forgot-password {
+    text-align: right;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  
+  .forgot-password a {
+    text-decoration: none;
+    color: #555;
+  }
+  
+  .btn-login {
+    background-color: #e25e5e;
+    color: white;
+    font-weight: 600;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-login:hover {
+    background-color: #d94444;
+  }
+  
+  .btn-register {
+    background-color: #b10000;
+    color: white;
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-register:hover {
+    background-color: #8b0000;
+  }

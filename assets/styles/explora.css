@@ -1,0 +1,302 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background-color: #141414;
+    color: white;
+    margin-top: 64px; /* ← añade esto */
+}
+
+main {
+    flex: 1;
+}
+
+.mapa-container {
+    padding: 1rem;
+}
+
+#mapa {
+    width: 100%;
+    height: 600px;
+    /* ← asegúrate de tener altura definida */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* navbar */
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    height: 64px;
+}
+
+.logo {
+    border-radius: 50%;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* ENLACES */
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #1f2937;
+}
+
+/* AVATAR */
+.avatar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #f3f4f6;
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+.avatar .icon {
+    width: 20px;
+    height: 20px;
+    color: #4b5563;
+}
+
+.avatar span {
+    font-size: 14px;
+    color: #374151;
+}
+
+.avatar button {
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* BOTÓN MENÚ MÓVIL */
+.menu-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.menu-button:hover {
+    background-color: #f3f4f6;
+}
+
+.menu-button .icon {
+    width: 24px;
+    height: 24px;
+    color: #4b5563;
+}
+
+/* MENÚ MÓVIL CON ANIMACIÓN */
+.mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background-color: white;
+    box-shadow: inset 0 1px 0 #e5e7eb;
+}
+
+.mobile-menu.nav-active {
+    max-height: 600px;
+    /* ajusta según el contenido */
+}
+
+/* ENLACES DEL MENÚ MÓVIL */
+.mobile-menu a {
+    display: block;
+    padding: 0.5rem;
+    color: #4b5563;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.mobile-menu a:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+/* USUARIO EN MENÚ MÓVIL */
+.mobile-user {
+    border-top: 1px solid #e5e7eb;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #374151;
+    font-size: 14px;
+}
+
+.user-info .icon {
+    width: 32px;
+    height: 32px;
+    color: #4b5563;
+}
+
+.mobile-user button {
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* RESPONSIVE */
+.desktop-only {
+    display: none;
+}
+
+.mobile-only {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .desktop-only {
+        display: flex !important;
+    }
+
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+/* OVERLAY */
+.mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 40;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ESTADO DEL BOTÓN HAMBURGUESA */
+.menu-button.hamburger-active .icon {
+    color: #1f2937;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #262424;
+    color: white;
+    padding: 3rem 1rem;
+}
+
+footer>div {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+footer h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+footer p,
+footer li,
+footer a {
+    color: #cccccc;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+footer a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: white;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.bottom-text {
+    border-top: 1px solid #444;
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    color: #aaa;
+    font-size: 0.85rem;
+}
