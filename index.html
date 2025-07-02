@@ -1,86 +1,101 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <title>AlertPerú360</title>
-    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
-    <link rel="stylesheet" href="public/assets/styles/styles.css">
+    <link href="public/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="public/assets/styles/styles.css" rel="stylesheet" />
     <!-- incluimos libreria para algunos iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <!-- Fuente Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet" />
 </head>
 
 <body>
+
+    <!-- NAVBAR SECTION -->
+    <!-- NAVBAR SECTION -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="#inicio">
-                <img src="public/assets/images/logo.jpg" alt="logo Alerta Peru 360." width="48" height="48"
-                    class="logo" />
+                <img src="public/assets/images/logo.jpg" alt="logo Alerta Peru 360." class="logo" width="48"
+                    height="48">
             </a>
+
+            <!-- switcher sólo escritorio -->
+            <div class="lang-switcher desktop-only" style="position:absolute; top:1rem; right:1rem;">
+                <button onclick="setLanguage('es')">🇪🇸 ES</button>
+                <button onclick="setLanguage('en')">🇬🇧 EN</button>
+            </div>
 
             <div class="spacer"></div>
 
-            <!-- Enlaces + Avatar juntos -->
+            <!-- enlaces + avatar sólo escritorio -->
             <div class="nav-right desktop-only">
                 <div class="nav-links">
-                    <a href="#inicio">Inicio</a>
-                    <a href="#acerca">Acerca</a>
-                    <a href="#mapas">Mapas de Riesgo</a>
-                    <a href="#recursos">Recursos</a>
-                    <a href="#contacto">Contacto</a>
+                    <a href="#inicio" data-i18n="nav_inicio">Inicio</a>
+                    <a href="#acerca" data-i18n="nav_acerca">Acerca</a>
+                    <a href="#mapas" data-i18n="nav_mapas">Mapas de Riesgo</a>
+                    <a href="#recursos" data-i18n="nav_recursos">Recursos</a>
+                    <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
                 </div>
-
                 <div class="avatar">
                     <a href="login.html" id="user-icon" title="Iniciar sesión">
                         <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                         </svg>
                     </a>
-                    <div id="user-info" style="display: flex; align-items: center; gap: 1rem;">
-                        <span id="welcome-msg">Bienvenido</span>
-                        <button id="logout-btn">Cerrar sesión</button>
+                    <div id="user-info" style="display:flex; align-items:center; gap:1rem;">
+                        <span data-i18n="nav_bienvenido">Bienvenido</span>
+                        <!-- Aquí ira solo el nombre del usuario -->
+                        <span id="username"></span>
+                        <button id="logout-btn" data-i18n="nav_logout">Cerrar sesión</button>
                     </div>
-                    <!-- <span>Bienvenido {username}</span>
-                    <form action="/api/auth/signout">
-                        <button type="submit">Cerrar sesión</button>
-                    </form> -->
                 </div>
             </div>
 
-            <!-- Botón menú móvil -->
+            <!-- hamburguesa siempre visible en móvil -->
             <button class="menu-button mobile-only" id="mobileMenuBtn" aria-label="Toggle menu">
                 <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                 </svg>
             </button>
         </div>
 
         <!-- Menú móvil -->
         <div class="mobile-menu mobile-only" id="navLinks">
-            <a href="#inicio">Inicio</a>
-            <a href="#acerca">Acerca</a>
-            <a href="#mapas">Mapas de Riesgo</a>
-            <a href="#recursos">Recursos</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#inicio" data-i18n="nav_inicio">Inicio</a>
+            <a href="#acerca" data-i18n="nav_acerca">Acerca</a>
+            <a href="#mapas" data-i18n="nav_mapas">Mapas de Riesgo</a>
+            <a href="#recursos" data-i18n="nav_recursos">Recursos</a>
+            <a href="#contacto" data-i18n="nav_contacto">Contacto</a>
 
             <div class="mobile-user">
                 <div class="user-info">
                     <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                     </svg>
-                    <span id="welcome-username">Bienvenido {username}</span>
+                    <span data-i18n="nav_bienvenido">Bienvenido</span>
+                    <!-- Aquí ira solo el nombre del usuario para evitar cambiar al momento de traducir texto -->
+                    <span id="username-mobile"></span>
                 </div>
-                <button id="logout-mobile" type="button">Cerrar sesión</button>
+                <button id="logout-mobile" data-i18n="nav_logout">Cerrar sesión</button>
+            </div>
+
+            <!-- switcher sólo móvil, aparece bajo "Cerrar sesión" -->
+            <div class="mobile-lang-switcher" style="padding:1rem; display:flex; gap:0.5rem; justify-content:center;">
+                <button onclick="setLanguage('es')">🇪🇸 ES</button>
+                <button onclick="setLanguage('en')">🇬🇧 EN</button>
             </div>
         </div>
     </nav>
+
+
 
     <!-- HERO SECTION -->
     <section class="hero" id="inicio">
@@ -88,16 +103,16 @@
             <div class="hero-content">
                 <!-- Columna Izquierda: Texto -->
                 <div class="hero-text">
-                    <h1>
+                    <h1 data-i18n="hero_title">
                         Prepárate y mantente<br />
                         seguro con <span class="highlight">AlertPerú360</span>
                     </h1>
-                    <p>
+                    <p data-i18n="hero_desc">
                         La plataforma digital para la gestión de emergencias y mapas de riesgo en Perú. Infórmate,
                         planifica y protege a tu comunidad.
                     </p>
-                    <a href="explora.html" class="hero-button">
-                        Explora los mapas de riesgo &rarr;
+                    <a class="hero-button" data-i18n="hero_btn" href="explora.html">
+                        Explora los mapas de riesgo →
                     </a>
                     <div class="hero-social">
                         <span>+50k</span>
@@ -106,11 +121,10 @@
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-
                 <!-- Columna Derecha: Imagen -->
                 <div class="hero-image">
-                    <img src="public/assets/images/mapa-portada.png" alt="Mapa de riesgo Perú" width="361"
-                        height="470" />
+                    <img alt="Mapa de riesgo Perú" height="470" src="public/assets/images/mapa-portada.png"
+                        width="361" />
                 </div>
             </div>
         </div>
@@ -122,134 +136,126 @@
             <div class="about-grid">
                 <!-- Columna Izquierda -->
                 <div class="about-text">
-                    <h2>Acerca de Nosotros</h2>
-                    <p>
-                        En AlertPerú360, creemos que estar informados puede marcar
-                        la diferencia entre la seguridad y el riesgo, entre la calma
-                        y el pánico, entre la vida y la tragedia. Por eso, creamos
-                        una plataforma integral de alertas tempranas y gestión de
-                        emergencias pensada especialmente para el Perú, uno de los
-                        países más vulnerables a los desastres naturales en
-                        Latinoamérica.
+                    <h2 data-i18n="about_title">Acerca de Nosotros</h2>
+                    <p data-i18n="about_desc">
+                        En AlertPerú360, creemos que estar informados puede marcar la diferencia entre la seguridad y el
+                        riesgo, entre la calma y el pánico, entre la vida y la tragedia. Por eso, creamos una plataforma
+                        integral de alertas tempranas y gestión de emergencias pensada especialmente para el Perú, uno
+                        de los países más vulnerables a los desastres naturales en Latinoamérica.
                     </p>
-
                     <div class="about-icon-row">
                         <span>
                             <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 4l7 4v4c0 5.25-3.5 9.75-7 12-3.5-2.25-7-6.75-7-12V8l7-4z" />
+                                <path d="M12 4l7 4v4c0 5.25-3.5 9.75-7 12-3.5-2.25-7-6.75-7-12V8l7-4z"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                             </svg>
                         </span>
                         <div>
-                            <div>
+                            <div data-i18n="about_mission">
                                 Nuestra misión es <span class="bold">proteger vidas</span>.
                             </div>
                         </div>
                     </div>
-
                     <div class="about-icon-row">
                         <span>
                             <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M1.5 12s4-7 10.5-7 10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z" />
-                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M1.5 12s4-7 10.5-7 10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                <circle cx="12" cy="12" r="3" />
                             </svg>
                         </span>
                         <div>
-                            <div>
-                                Nuestra visión es <span class="bold">construir un Perú informado y conectado</span>
+                            <div data-i18n="about_vision">
+                                Nuestra visión es <span class="bold">construir un Perú informado y conectado</span>.
                             </div>
                         </div>
                     </div>
-
                     <div class="about-button">
-                        <a href="descubre.html">Descubre más</a>
+                        <a href="descubre.html" data-i18n="about_btn">Descubre más</a>
                     </div>
                 </div>
-
                 <!-- Columna Derecha -->
                 <div class="about-image-column">
-                    <h3>¿Qué Hacemos?</h3>
-                    <p>
-                        Informamos, educamos y conectamos a la comunidad peruana
-                        para fortalecer la prevención y la respuesta ante
-                        emergencias.
+                    <h3 data-i18n="about_what">¿Qué Hacemos?</h3>
+                    <p data-i18n="about_what_desc">
+                        Informamos, educamos y conectamos a la comunidad peruana para fortalecer la prevención y la
+                        respuesta ante emergencias.
                     </p>
                     <div class="about-image-wrapper">
-                        <img src="public/assets/images/mobile.png" alt="Alerta móvil" width="256" height="auto" />
+                        <img src="public/assets/images/mobile.png" alt="Alerta móvil" width="256"
+                            data-i18n-alt="about_img_alt">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+
     <!-- MAPAS SECTION -->
-    <section id="mapas" class="mapas-section">
+    <section class="mapas-section" id="mapas">
         <div class="mapas-container">
             <div class="mapas-grid">
                 <!-- Texto -->
                 <div class="mapas-text">
-                    <h2>Protege a Tu Comunidad con<br />Información Precisa</h2>
-                    <p>
+                    <h2 data-i18n="mapas_title">Protege a Tu Comunidad con<br />Información Precisa</h2>
+                    <p data-i18n="mapas_desc">
                         Accede a mapas de riesgo actualizados, recibe alertas tempranas y aprende cómo prepararte ante
                         emergencias. AlertaPerú360 te brinda las herramientas para proteger a tu familia y vecinos.
                     </p>
-                    <a href="aprende.html" class="mapas-button">Aprende Más</a>
+                    <a class="mapas-button" href="aprende.html" data-i18n="mapas_btn">Aprende Más</a>
                 </div>
-
                 <!-- Imagen y tarjeta -->
                 <div class="mapas-visual">
                     <div class="mapas-img-wrapper">
-                        <img src="public/assets/images/info.png" alt="Bandera Perú" class="mapas-img" />
+                        <img src="public/assets/images/info.png" alt="Bandera Perú" class="mapas-img">
                     </div>
                     <div class="mapas-card">
                         <svg class="mapas-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 4l7 4v4c0 5.25-3.5 9.75-7 12-3.5-2.25-7-6.75-7-12V8l7-4z" />
+                            <path d="M12 4l7 4v4c0 5.25-3.5 9.75-7 12-3.5-2.25-7-6.75-7-12V8l7-4z"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                         </svg>
                         <div>
-                            <div class="mapas-card-num">12,500</div>
-                            <div class="mapas-card-text">Comunidades protegidas con AlertaPerú360</div>
+                            <div class="mapas-card-num" data-i18n="mapas_card_num">12,500</div>
+                            <div class="mapas-card-text" data-i18n="mapas_card_text">Comunidades protegidas con
+                                AlertaPerú360</div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <!-- Segunda parte -->
             <div class="mapas-zona">
-                <h3>Consulta las zonas de riesgo de tu zona</h3>
-                <p>
+                <h3 data-i18n="mapas_zona_title">Consulta las zonas de riesgo de tu zona</h3>
+                <p data-i18n="mapas_zona_desc">
                     Infórmate sobre las áreas vulnerables en tu comunidad y conoce las medidas de prevención que puedes
                     tomar. Tu seguridad es nuestra prioridad.
                 </p>
                 <div class="mapas-zona-actions">
-                    <button class="mapas-button">Ver Mapas Ahora</button>
-                    <a href="#" class="mapas-link">¿Qué son los Mapas de Riesgo?</a>
+                    <button class="mapas-button" data-i18n="mapas_zona_btn">Ver Mapas Ahora</button>
+                    <a class="mapas-link" href="#" data-i18n="mapas_zona_info">¿Qué son los Mapas de Riesgo?</a>
                 </div>
             </div>
         </div>
     </section>
 
+
     <!-- RECURSOS SECTION -->
-    <section id="recursos" class="recursos-section">
+    <section class="recursos-section" id="recursos">
         <div class="recursos-container">
             <div class="recursos-header">
-                <h2>Últimas Noticias y Actualizaciones</h2>
-                <p>
-                    Mantente al día con las últimas noticias sobre gestión de emergencias, mapas de riesgo y cómo
-                    AlertaPerú360 está protegiendo a las comunidades.
+                <h2 data-i18n="recursos_title">Últimas Noticias y Actualizaciones</h2>
+                <p data-i18n="recursos_desc">
+                    Mantente al día con las últimas noticias sobre gestión de emergencias y mapas de riesgo.
                 </p>
             </div>
-
             <div class="recursos-grid">
                 <!-- Noticia 1 -->
                 <div class="recurso-card">
                     <div class="recurso-top">
-                        <span class="fecha">Oct 26, 2025</span>
-                        <span class="tag">Mapas de Riesgo</span>
+                        <span class="fecha" data-i18n="noticia1_fecha">Oct 26, 2025</span>
+                        <span class="tag" data-i18n="noticia1_tag">Mapas de Riesgo</span>
                     </div>
-                    <h3>Nuevos mapas de Riesgo Actualizados</h3>
-                    <p>
+                    <h3 data-i18n="noticia1_title">Nuevos mapas de Riesgo Actualizados</h3>
+                    <p data-i18n="noticia1_desc">
                         Descubre los nuevos mapas de riesgo con información detallada sobre las zonas más vulnerables
                         del país.
                     </p>
@@ -257,38 +263,36 @@
                         <svg class="autor-icon" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
                         </svg>
-                        <span><strong>CARLOS PÉREZ</strong></span>
-                        <span class="cargo">Especialista en Riesgos</span>
+                        <span><strong data-i18n="noticia1_autor">CARLOS PÉREZ</strong></span>
+                        <span class="cargo" data-i18n="noticia1_cargo">Especialista en Riesgos</span>
                     </div>
                 </div>
-
                 <!-- Noticia 2 -->
                 <div class="recurso-card">
                     <div class="recurso-top">
-                        <span class="fecha">Oct 26, 2025</span>
-                        <span class="tag">Preparación</span>
+                        <span class="fecha" data-i18n="noticia2_fecha">Oct 26, 2025</span>
+                        <span class="tag" data-i18n="noticia2_tag">Preparación</span>
                     </div>
-                    <h3>Consejos para Prepararte ante un Sismo</h3>
-                    <p>
+                    <h3 data-i18n="noticia2_title">Consejos para Prepararte ante un Sismo</h3>
+                    <p data-i18n="noticia2_desc">
                         Aprende qué hacer antes, durante y después de un sismo para protegerte a ti y a tu familia.
                     </p>
                     <div class="autor">
                         <svg class="autor-icon" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
                         </svg>
-                        <span><strong>ANA RODRIGUEZ</strong></span>
-                        <span class="cargo">Experta en Seguridad</span>
+                        <span><strong data-i18n="noticia2_autor">ANA RODRIGUEZ</strong></span>
+                        <span class="cargo" data-i18n="noticia2_cargo">Experta en Seguridad</span>
                     </div>
                 </div>
-
                 <!-- Noticia 3 -->
                 <div class="recurso-card">
                     <div class="recurso-top">
-                        <span class="fecha">Oct 26, 2025</span>
-                        <span class="tag">Actualizaciones</span>
+                        <span class="fecha" data-i18n="noticia3_fecha">Oct 26, 2025</span>
+                        <span class="tag" data-i18n="noticia3_tag">Actualizaciones</span>
                     </div>
-                    <h3>AlertaPerú360 se Expande a nuevas Regiones</h3>
-                    <p>
+                    <h3 data-i18n="noticia3_title">AlertaPerú360 se Expande a nuevas Regiones</h3>
+                    <p data-i18n="noticia3_desc">
                         La plataforma ahora está disponible en más regiones del Perú para brindar información y alertas
                         a más comunidades.
                     </p>
@@ -296,202 +300,197 @@
                         <svg class="autor-icon" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
                         </svg>
-                        <span><strong>EQUIPO ALERTAPERÚ360</strong></span>
-                        <span class="cargo">Plataforma Digital</span>
+                        <span><strong data-i18n="noticia3_autor">EQUIPO ALERTAPERÚ360</strong></span>
+                        <span class="cargo" data-i18n="noticia3_cargo">Plataforma Digital</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+
     <!-- CONTACTO SECTION -->
-    <section id="contacto" class="contacto-section">
+    <section class="contacto-section" id="contacto">
         <div class="contacto-container">
-            <h2 class="contacto-title">Contáctanos</h2>
-            <p class="contacto-subtitle">
+            <h2 class="contacto-title" data-i18n="contacto_title">Contáctanos</h2>
+            <p class="contacto-subtitle" data-i18n="contacto_subtitle">
                 ¿Tienes preguntas o necesitas ayuda? Contáctanos y nuestro equipo te brindará el soporte que necesitas.
             </p>
-
             <div class="contacto-grid">
                 <!-- Columna Izquierda -->
                 <div class="contacto-opciones">
                     <div class="contacto-bloque">
                         <div class="icono">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"></path>
                             </svg>
                         </div>
                         <div>
-                            <h3>Soporte técnico</h3>
-                            <p>Obten ayuda con cualquier problema técnico o consulta sobre la plataforma.</p>
-                            <a href="#">Obtener soporte &rarr;</a>
+                            <h3 data-i18n="soporte_tec">Soporte técnico</h3>
+                            <p data-i18n="soporte_tec_desc">Obten ayuda con cualquier problema técnico o consulta sobre
+                                la plataforma.</p>
+                            <a href="#" data-i18n="soporte_btn">Obtener soporte →</a>
                         </div>
                     </div>
-
                     <div class="contacto-bloque">
                         <div class="icono">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            <svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                <path
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
                             </svg>
                         </div>
                         <div>
-                            <h3>Consultas Generales</h3>
-                            <p>Envíanos tus preguntas y comentarios sobre AlertaPerú360</p>
-                            <a href="#">Obtener soporte &rarr;</a>
+                            <h3 data-i18n="soporte_consultas">Consultas Generales</h3>
+                            <p data-i18n="soporte_consultas_desc">Envíanos tus preguntas y comentarios sobre
+                                AlertaPerú360</p>
+                            <a href="#" data-i18n="soporte_btn">Obtener soporte →</a>
                         </div>
                     </div>
-
                     <div class="contacto-bloque">
                         <div class="icono">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.134l-1.897.948a1 1 0 00-.54 1.49l.395.898a1 1 0 00.826 1.342l2.972.844a1 1 0 001.07-.264l1.17-1.17a1 1 0 011.266-.153l2.584 1.37a1 1 0 01.62 1.077V19a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+                            <svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                <path
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.134l-1.897.948a1 1 0 00-.54 1.49l.395.898a1 1 0 00.826 1.342l2.972.844a1 1 0 001.07-.264l1.17-1.17a1 1 0 011.266-.153l2.584 1.37a1 1 0 01.62 1.077V19a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
                             </svg>
                         </div>
                         <div>
-                            <h3>Línea de Emergencia</h3>
-                            <p>Comunícate con nosotros en caso de emergencia o situación de riesgo.</p>
-                            <a href="#">Obtener soporte &rarr;</a>
+                            <h3 data-i18n="soporte_emergencia">Línea de Emergencia</h3>
+                            <p data-i18n="soporte_emergencia_desc">Comunícate con nosotros en caso de emergencia o
+                                situación de riesgo.</p>
+                            <a href="#" data-i18n="soporte_btn">Obtener soporte →</a>
                         </div>
                     </div>
                 </div>
-
                 <!-- Columna Derecha -->
                 <div class="contacto-formulario">
-                    <form>
-                        <h3>Envíanos un Mensaje</h3>
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" name="name" required />
-
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required />
-
-                        <label for="message">Mensaje</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
-
-                        <button type="submit">Enviar Mensaje</button>
-                    </form>
+                    <h3 data-i18n="form_title">Envíanos un Mensaje</h3>
+                    <label for="name" data-i18n="form_label_name">Nombre</label>
+                    <input id="name" name="name" type="text" required>
+                    <label for="email" data-i18n="form_label_email">Email</label>
+                    <input id="email" name="email" type="email" required>
+                    <label for="message" data-i18n="form_label_message">Mensaje</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <button type="submit" data-i18n="form_btn">Enviar Mensaje</button>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- FOOTER SECTION -->
     <footer>
         <div>
             <div class="footer-grid">
                 <!-- Columna 1 -->
                 <div>
-                    <h3>AlertPerú360</h3>
-                    <p>AlertaPerú360 es una plataforma digital que brinda alertas</p>
+                    <h3 data-i18n="footer_about">AlertPerú360</h3>
+                    <p data-i18n="footer_text">AlertaPerú360 es una plataforma digital que brinda alertas</p>
                 </div>
-
                 <!-- Columna 2 -->
                 <div>
-                    <h3>Enlaces Rápidos</h3>
+                    <h3 data-i18n="footer_links_title">Enlaces Rápidos</h3>
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#acerca">Acerca de</a></li>
-                        <li><a href="#mapas">Mapas de Riesgo</a></li>
-                        <li><a href="#recursos">Recursos</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#" data-i18n="nav_inicio">Inicio</a></li>
+                        <li><a href="#acerca" data-i18n="nav_acerca">Acerca</a></li>
+                        <li><a href="#mapas" data-i18n="nav_mapas">Mapas de Riesgo</a></li>
+                        <li><a href="#recursos" data-i18n="nav_recursos">Recursos</a></li>
+                        <li><a href="#contacto" data-i18n="nav_contacto">Contacto</a></li>
                     </ul>
                 </div>
-
                 <!-- Columna 3 -->
                 <div>
-                    <h3>Contacto</h3>
+                    <h3 data-i18n="footer_contact_title">Contacto</h3>
                     <ul>
-                        <li>Email: info@alertaperu360.com</li>
-                        <li>Teléfono: +51 456-7890</li>
-                        <li>Dirección: Miraflores 888</li>
+                        <li data-i18n="footer_email">Email: info@alertaperu360.com</li>
+                        <li data-i18n="footer_phone">Teléfono: +51 456-7890</li>
+                        <li data-i18n="footer_address">Dirección: Miraflores 888</li>
                     </ul>
                 </div>
-
                 <!-- Columna 4 -->
                 <div>
-                    <h3>Síguenos</h3>
+                    <h3 data-i18n="footer_follow_title">Síguenos</h3>
                     <div class="social-icons">
-                        <a href="#" aria-label="Facebook">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99h-2.54v-2.89h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99C18.34 21.13 22 16.99 22 12z" />
+                        <a aria-label="Facebook" href="#">
+                            <svg fill="currentColor" viewbox="0 0 24 24">
+                                <path clip-rule="evenodd"
+                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99h-2.54v-2.89h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99C18.34 21.13 22 16.99 22 12z"
+                                    fill-rule="evenodd"></path>
                             </svg>
                         </a>
-                        <a href="#" aria-label="Twitter">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
+                        <a aria-label="Twitter" href="#">
+                            <svg fill="currentColor" viewbox="0 0 24 24">
                                 <path
-                                    d="M22.46 6c-.85.38-1.77.63-2.74.74.96-.58 1.7-1.5 2.04-2.58-.9.53-1.9.92-2.95 1.12C18.66 4.3 17.5 4 16.27 4c-2.42 0-4.38 1.96-4.38 4.38 0 .34.04.67.1 1-.37-.02-.74-.08-1.1-.18-3.66-.54-6.88-2.61-9.04-6.19-.38.65-.6 1.4-.6 2.22 0 1.52.78 2.87 1.96 3.66-.72-.02-1.39-.22-1.98-.55v.06c0 2.13 1.52 3.9 3.54 4.3-.37.1-.76.12-1.16.05.58 1.72 2.26 2.97 4.25 3.06-1.54 1.2-3.48 1.92-5.59 1.92-.36 0-.7-.02-1.04-.06 2.26 1.45 4.95 2.3 7.84 2.3 9.4 0 14.54-7.8 14.54-14.54 0-.22 0-.43-.01-.64.99-.71 1.84-1.6 2.51-2.6z" />
+                                    d="M22.46 6c-.85.38-1.77.63-2.74.74.96-.58 1.7-1.5 2.04-2.58-.9.53-1.9.92-2.95 1.12C18.66 4.3 17.5 4 16.27 4c-2.42 0-4.38 1.96-4.38 4.38 0 .34.04.67.1 1-.37-.02-.74-.08-1.1-.18-3.66-.54-6.88-2.61-9.04-6.19-.38.65-.6 1.4-.6 2.22 0 1.52.78 2.87 1.96 3.66-.72-.02-1.39-.22-1.98-.55v.06c0 2.13 1.52 3.9 3.54 4.3-.37.1-.76.12-1.16.05.58 1.72 2.26 2.97 4.25 3.06-1.54 1.2-3.48 1.92-5.59 1.92-.36 0-.7-.02-1.04-.06 2.26 1.45 4.95 2.3 7.84 2.3 9.4 0 14.54-7.8 14.54-14.54 0-.22 0-.43-.01-.64.99-.71 1.84-1.6 2.51-2.6z">
+                                </path>
                             </svg>
                         </a>
-                        <a href="#" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M12 0C8.74 0 8.33 0 7.05.04c-1.3.05-2.18.23-2.95.53-.78.3-1.4.74-1.92 1.26-.52.52-.96 1.14-1.26 1.92-.3.77-.48 1.65-.53 2.95C0 8.33 0 8.74 0 12s.01 3.67.04 4.95c.05 1.3.23 2.18.53 2.95.3.78.74 1.4 1.26 1.92.52.52 1.14.96 1.92 1.26.77.3 1.65.48 2.95.53C8.33 24 8.74 24 12 24s3.67 0 4.95-.04c1.3-.05 2.18-.23 2.95-.53.78-.3 1.4-.74 1.92-1.26.52-.52.96-1.14 1.26-1.92.3-.77.48-1.65.53-2.95.04-1.3.04-1.71.04-4.95s0-3.67-.04-4.95c-.05-1.3-.23-2.18-.53-2.95-.3-.78-.74-1.4-1.26-1.92-.52-.52-1.14-.96-1.92-1.26-.77-.3-1.65-.48-2.95-.53C15.67 0 15.26 0 12 0zm0 2.16c3.22 0 3.63 0 4.9.05 1.17.04 1.76.24 2.16.4.4.16.7.35.9.55.2.2.39.5.55.9.16.4.36 1.05.4 2.16.05 1.27.05 1.68.05 4.9s0 3.63-.05 4.9c-.04 1.17-.24 1.76-.4 2.16-.16.4-.35.7-.55.9-.2.2-.5.39-.9.55-.4.16-1.05.36-2.16.4-1.27.05-1.68.05-4.9.05s-3.63 0-4.9-.05c-1.17-.04-1.76-.24-2.16-.4-.4-.16-.7-.35-.9-.55-.2-.2-.39-.5-.55-.9-.16-.4-.36-1.05-.4-2.16C2.16 15.67 2.16 15.26 2.16 12s0-3.63.05-4.9c.04-1.17.24-1.76.4-2.16.16-.4.35-.7.55-.9.2-.2.5-.39.9-.55.4-.16 1.05-.36 2.16-.4C8.33 2.16 8.74 2.16 12 2.16zm0 3.63A6.21 6.21 0 1018.21 12 6.22 6.22 0 0012 5.79zm0 10.37A4.16 4.16 0 1116.16 12 4.16 4.16 0 0112 16.16zm5.83-11.75c.96 0 1.75.79 1.75 1.75s-.79 1.75-1.75 1.75-1.75-.79-1.75-1.75.79-1.75 1.75-1.75z" />
+                        <a aria-label="Instagram" href="#">
+                            <svg fill="currentColor" viewbox="0 0 24 24">
+                                <path clip-rule="evenodd"
+                                    d="M12 0C8.74 0 8.33 0 7.05.04c-1.3.05-2.18.23-2.95.53-.78.3-1.4.74-1.92 1.26-.52.52-.96 1.14-1.26 1.92-.3.77-.48 1.65-.53 2.95C0 8.33 0 8.74 0 12s.01 3.67.04 4.95c.05 1.3.23 2.18.53 2.95.3.78.74 1.4 1.26 1.92.52.52 1.14.96 1.92 1.26.77.3 1.65.48 2.95.53C8.33 24 8.74 24 12 24s3.67 0 4.95-.04c1.3-.05 2.18-.23 2.95-.53.78-.3 1.4-.74 1.92-1.26.52-.52.96-1.14 1.26-1.92.3-.77.48-1.65.53-2.95.04-1.3.04-1.71.04-4.95s0-3.67-.04-4.95c-.05-1.3-.23-2.18-.53-2.95-.3-.78-.74-1.4-1.26-1.92-.52-.52-1.14-.96-1.92-1.26-.77-.3-1.65-.48-2.95-.53C15.67 0 15.26 0 12 0zm0 2.16c3.22 0 3.63 0 4.9.05 1.17.04 1.76.24 2.16.4.4.16.7.35.9.55.2.2.39.5.55.9.16.4.36 1.05.4 2.16.05 1.27.05 1.68.05 4.9s0 3.63-.05 4.9c-.04 1.17-.24 1.76-.4 2.16-.16.4-.35.7-.55.9-.2.2-.5.39-.9.55-.4.16-1.05.36-2.16.4-1.27.05-1.68.05-4.9.05s-3.63 0-4.9-.05c-1.17-.04-1.76-.24-2.16-.4-.4-.16-.7-.35-.9-.55-.2-.2-.39-.5-.55-.9-.16-.4-.36-1.05-.4-2.16C2.16 15.67 2.16 15.26 2.16 12s0-3.63.05-4.9c.04-1.17.24-1.76.4-2.16.16-.4.35-.7.55-.9.2-.2.5-.39.9-.55.4-.16 1.05-.36 2.16-.4C8.33 2.16 8.74 2.16 12 2.16zm0 3.63A6.21 6.21 0 1018.21 12 6.22 6.22 0 0012 5.79zm0 10.37A4.16 4.16 0 1116.16 12 4.16 4.16 0 0112 16.16zm5.83-11.75c.96 0 1.75.79 1.75 1.75s-.79 1.75-1.75 1.75-1.75-.79-1.75-1.75.79-1.75 1.75-1.75z"
+                                    fill-rule="evenodd"></path>
                             </svg>
                         </a>
                     </div>
                 </div>
             </div>
-
             <div class="bottom-text">
-                <p>&copy; 2025 AlertaPerú360. Todos los derechos reservados.</p>
+                <p data-i18n="footer_copy">© 2025 AlertaPerú360. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-
-
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <script src="public/assets/scripts/main.js"></script>
+    <script src="public/assets/scripts/lang.js"></script>
 </body>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-  const { createClient } = window.supabase;
-  const supabase = createClient(
-    'https://tidwrictjflmmmqcujvd.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpZHdyaWN0amZsbW1tcWN1anZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxMTkzMzgsImV4cCI6MjA2NTY5NTMzOH0.OiFq8Dx2e3Evpg5FjirS2C-6DpH7oSyGhwZx4_xeNlk'
-  );
+    const { createClient } = window.supabase;
+    const supabase = createClient(
+        'https://tidwrictjflmmmqcujvd.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpZHdyaWN0amZsbW1tcWN1anZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxMTkzMzgsImV4cCI6MjA2NTY5NTMzOH0.OiFq8Dx2e3Evpg5FjirS2C-6DpH7oSyGhwZx4_xeNlk'
+    );
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    const { data: sessionData } = await supabase.auth.getSession();
-    const userId = sessionData?.session?.user?.id;
+    document.addEventListener('DOMContentLoaded', async () => {
+        const { data: sessionData } = await supabase.auth.getSession();
+        const userId = sessionData?.session?.user?.id;
 
-    if (!userId) {
-      // Si no hay sesión activa, redirige al login
-      window.location.href = 'login.html';
-      return;
-    }
+        if (!userId) {
+            // Si no hay sesion activa, redirige al login
+            window.location.href = 'login.html';
+            return;
+        }
 
-    const { data: perfil, error } = await supabase
-      .from('profiles')
-      .select('nombres')
-      .eq('id', userId)
-      .single();
+        const { data: perfil, error } = await supabase
+            .from('profiles')
+            .select('nombres')
+            .eq('id', userId)
+            .single();
 
-    if (perfil?.nombres) {
-      document.getElementById('welcome-msg').textContent = `Bienvenido ${perfil.nombres}`;
-    }
+        if (perfil?.nombres) {
+            // document.getElementById('welcome-msg').textContent = `Bienvenido ${perfil.nombres}`;|
+            // Ponemos el nombre de usuario en los spans adecuados
+            document.getElementById('username').textContent = perfil.nombres;
+            document.getElementById('username-mobile').textContent = perfil.nombres;
+        }
 
-    document.getElementById('logout-btn').addEventListener('click', async () => {
-      await supabase.auth.signOut();
-      window.location.href = 'login.html';
+        document.getElementById('logout-btn').addEventListener('click', async () => {
+            await supabase.auth.signOut();
+            window.location.href = 'login.html';
+        });
+
+        if (perfil?.nombres) {
+            const welcome = document.getElementById('welcome-username');
+            if (welcome) welcome.textContent = `Bienvenido ${perfil.nombres}`;
+        }
+
+        document.getElementById('logout-mobile')?.addEventListener('click', async () => {
+            await supabase.auth.signOut();
+            window.location.href = 'login.html';
+        });
     });
-
-    if (perfil?.nombres) {
-      const welcome = document.getElementById('welcome-username');
-      if (welcome) welcome.textContent = `Bienvenido ${perfil.nombres}`;
-    }
-
-    document.getElementById('logout-mobile')?.addEventListener('click', async () => {
-      await supabase.auth.signOut();
-      window.location.href = 'login.html';
-    });
-  });
 </script>
 
 </html>
