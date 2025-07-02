@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión - AlertaPerú360</title>
+  <link rel="stylesheet" href="/public/assets/styles/login.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="logo-wrapper">
+      <img src="/public/assets/images/logo.jpg" alt="Logo AlertaPerú360" />
+    </div>
+
+    <form class="login-form">
+      <h2>Inicia Sesión</h2>
+
+      <input type="email" id="email" name="email" placeholder="Ingresa correo electrónico" />
+      <input type="password" id="password" name="password" placeholder="Ingresa contraseña" />
+
+      <div class="forgot-password">
+        <a href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button type="submit" class="btn-login">Ingresar</button>
+      <a href="register.html" class="btn-register">¿Nuevo usuario? Regístrate</a>
+    </form>
+    <p id="login-error" style="color: red; font-size: 14px;"></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const { createClient } = window.supabase;
+
+    const supabase = createClient(
+      'https://tidwrictjflmmmqcujvd.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpZHdyaWN0amZsbW1tcWN1anZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxMTkzMzgsImV4cCI6MjA2NTY5NTMzOH0.OiFq8Dx2e3Evpg5FjirS2C-6DpH7oSyGhwZx4_xeNlk'
+    );
+
+    const form = document.querySelector('.login-form');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('login-error');
+      errorMsg.textContent = '';
+
+      try {
+        // 1. Iniciar sesión
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+        if (error) {
+          errorMsg.textContent = 'Correo o contraseña incorrectos';
+          console.error(error);
+          return;
+        }
+
+        const userId = data.user.id;
+
+        // 2. Obtener perfil desde tabla profiles
+        const { data: perfil, error: perfilError } = await supabase
+          .from('profiles')
+          .select('nombres, apellidos')
+          .eq('id', userId)
+          .single();
+
+        if (perfilError) {
+          console.error('No se pudo obtener el perfil:', perfilError);
+          Toastify({
+            text: "Inicio exitoso, pero no se cargó el perfil",
+            duration: 3000,
+            gravity: "bottom",
+            position: "right",
+            backgroundColor: "#facc15", // Amarillo de advertencia
+            style: {
+              fontSize: "16px",
+              padding: "16px 24px",
+              fontWeight: "600",
+              borderRadius: "10px"
+            }
+          }).showToast();
+        } else {
+          Toastify({
+            text: `Bienvenido ${perfil.nombres} ${perfil.apellidos}`,
+            duration: 3000,
+            gravity: "bottom",
+            position: "right",
+            backgroundColor: "#22c55e", // Verde éxito
+            style: {
+              fontSize: "16px",
+              padding: "16px 24px",
+              fontWeight: "600",
+              borderRadius: "10px"
+            }
+          }).showToast();
+        }
+
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+
+      } catch (err) {
+        console.error('Error inesperado al iniciar sesión:', err);
+        errorMsg.textContent = 'Error inesperado. Intente nuevamente.';
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>
