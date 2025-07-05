@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Visor de Mapas | AlertaPerú360</title>
+  <link rel="stylesheet" href="public/assets/styles/visor.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <section class="visor">
+    <h2>Visor de Mapas Interactivos</h2>
+    <p>Selecciona tu región para visualizar zonas de riesgo específicas:</p>
+
+    <div class="region-buttons">
+      <button onclick="cambiarVista(-12.05, -77.05, 'Lima')">Ver Lima</button>
+      <button onclick="cambiarVista(-13.52, -71.97, 'Cusco')">Ver Cusco</button>
+      <button onclick="cambiarVista(-5.19, -80.63, 'Piura')">Ver Piura</button>
+    </div>
+
+    <div id="mapa" style="height: 500px; margin-top: 30px;"></div>
+
+    <a href="index.html" class="btn-volver">← Volver al inicio</a>
+  </section>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const mapa = L.map('mapa').setView([-12.05, -77.05], 10);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(mapa);
+
+    const marcador = L.marker([-12.05, -77.05]).addTo(mapa)
+      .bindPopup('Zona de riesgo en Lima')
+      .openPopup();
+
+    function cambiarVista(lat, lng, ciudad) {
+      mapa.setView([lat, lng], 12);
+      marcador.setLatLng([lat, lng]).setPopupContent(`Zona de riesgo en ${ciudad}`).openPopup();
+    }
+  </script>
+</body>
+</html>
