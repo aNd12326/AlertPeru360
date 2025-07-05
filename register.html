@@ -52,32 +52,54 @@
       e.preventDefault();
       errorMsg.textContent = '';
 
-      const nombres = form.nombres.value;
-      const apellidos = form.apellidos.value;
-      const email = form.email.value;
-      const password = form.password.value;
+      const nombres = form.nombres.value.trim();
+      const apellidos = form.apellidos.value.trim();
+      const email = form.email.value.trim();
+      const password = form.password.value.trim();
+
+      const errores = [];
+
+      // Verifica si todo es vacio
+      if (!nombres && !apellidos && !email && !password) {
+        errorMsg.textContent = 'Todos los campos son obligatorios.';
+        return;
+      }
+
+      // Validaciones específicas por campo
+      if (!nombres) errores.push('El campo Nombres es obligatorio.');
+      if (!apellidos) errores.push('El campo Apellidos es obligatorio.');
+      if (!email) {
+        errores.push('El campo Correo Electrónico es obligatorio.');
+      } else if (!/\S+@\S+\.\S+/.test(email)) {
+        errores.push('Ingresa un correo electrónico válido.');
+      }
+      if (!password) {
+        errores.push('El campo Contraseña es obligatorio.');
+      } else if (password.length < 6) {
+        errores.push('La contraseña debe tener al menos 6 caracteres.');
+      }
+
+      // Mostrar todos los errores
+      if (errores.length > 0) {
+        errorMsg.innerHTML = errores.map(err => `<p>${err}</p>`).join('');
+        return;
+      }
 
       try {
-        // Crear cuenta
-        const { data, error } = await supabase.auth.signUp({
-          email,
-          password
-        });
+        const { data, error } = await supabase.auth.signUp({ email, password });
 
         if (error) {
-          errorMsg.textContent = error.message;
+          errorMsg.textContent = 'No se pudo registrar. ' + error.message;
           console.error(error);
           return;
         }
 
         const userId = data.user?.id;
-
         if (!userId) {
           errorMsg.textContent = 'No se pudo obtener ID del usuario.';
           return;
         }
 
-        // Insertar perfil en tabla "profiles"
         const { error: insertError } = await supabase.from('profiles').insert({
           id: userId,
           nombres,
@@ -110,9 +132,10 @@
 
       } catch (err) {
         console.error('Error inesperado:', err);
-        errorMsg.textContent = 'Error inesperado al registrar.';
+        errorMsg.textContent = 'Ocurrió un error inesperado.';
       }
     });
+
   </script>
 </body>
 
