@@ -49,70 +49,93 @@
     const errorMsg = document.getElementById('register-error');
 
     form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      errorMsg.textContent = '';
+  e.preventDefault();
+  errorMsg.textContent = '';
 
-      const nombres = form.nombres.value;
-      const apellidos = form.apellidos.value;
-      const email = form.email.value;
-      const password = form.password.value;
+  const nombres = form.nombres.value.trim();
+  const apellidos = form.apellidos.value.trim();
+  const email = form.email.value.trim();
+  const password = form.password.value.trim();
 
-      try {
-        // Crear cuenta
-        const { data, error } = await supabase.auth.signUp({
-          email,
-          password
-        });
+  const errores = [];
 
-        if (error) {
-          errorMsg.textContent = error.message;
-          console.error(error);
-          return;
-        }
+  // Verifica si todo está vacío
+  if (!nombres && !apellidos && !email && !password) {
+    errorMsg.textContent = 'Todos los campos son obligatorios.';
+    return;
+  }
 
-        const userId = data.user?.id;
+  // Validaciones específicas por campo
+  if (!nombres) errores.push('El campo Nombres es obligatorio.');
+  if (!apellidos) errores.push('El campo Apellidos es obligatorio.');
+  if (!email) {
+    errores.push('El campo Correo Electrónico es obligatorio.');
+  } else if (!/\S+@\S+\.\S+/.test(email)) {
+    errores.push('Ingresa un correo electrónico válido.');
+  }
+  if (!password) {
+    errores.push('El campo Contraseña es obligatorio.');
+  } else if (password.length < 6) {
+    errores.push('La contraseña debe tener al menos 6 caracteres.');
+  }
 
-        if (!userId) {
-          errorMsg.textContent = 'No se pudo obtener ID del usuario.';
-          return;
-        }
+  // Mostrar todos los errores
+  if (errores.length > 0) {
+    errorMsg.innerHTML = errores.map(err => `<p>${err}</p>`).join('');
+    return;
+  }
 
-        // Insertar perfil en tabla "profiles"
-        const { error: insertError } = await supabase.from('profiles').insert({
-          id: userId,
-          nombres,
-          apellidos
-        });
+  try {
+    const { data, error } = await supabase.auth.signUp({ email, password });
 
-        if (insertError) {
-          errorMsg.textContent = 'Error al guardar el perfil.';
-          console.error(insertError);
-          return;
-        }
+    if (error) {
+      errorMsg.textContent = 'No se pudo registrar. ' + error.message;
+      console.error(error);
+      return;
+    }
 
-        Toastify({
-          text: "Registro exitoso",
-          duration: 3000,
-          gravity: "bottom",
-          position: "right",
-          backgroundColor: "#22c55e",
-          style: {
-            fontSize: "16px",
-            padding: "16px 24px",
-            fontWeight: "600",
-            borderRadius: "10px"
-          }
-        }).showToast();
+    const userId = data.user?.id;
+    if (!userId) {
+      errorMsg.textContent = 'No se pudo obtener ID del usuario.';
+      return;
+    }
 
-        setTimeout(() => {
-          window.location.href = "login.html";
-        }, 1500);
-
-      } catch (err) {
-        console.error('Error inesperado:', err);
-        errorMsg.textContent = 'Error inesperado al registrar.';
-      }
+    const { error: insertError } = await supabase.from('profiles').insert({
+      id: userId,
+      nombres,
+      apellidos
     });
+
+    if (insertError) {
+      errorMsg.textContent = 'Error al guardar el perfil.';
+      console.error(insertError);
+      return;
+    }
+
+    Toastify({
+      text: "Registro exitoso",
+      duration: 3000,
+      gravity: "bottom",
+      position: "right",
+      backgroundColor: "#22c55e",
+      style: {
+        fontSize: "16px",
+        padding: "16px 24px",
+        fontWeight: "600",
+        borderRadius: "10px"
+      }
+    }).showToast();
+
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1500);
+
+  } catch (err) {
+    console.error('Error inesperado:', err);
+    errorMsg.textContent = 'Ocurrió un error inesperado.';
+  }
+});
+
   </script>
 </body>
 
