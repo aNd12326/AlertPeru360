@@ -123,7 +123,8 @@ body {
 }
 
 .mobile-menu.nav-active {
-  max-height: 600px; /* ajusta según el contenido */
+  max-height: 600px;
+  /* ajusta según el contenido */
 }
 
 /* ENLACES DEL MENÚ MÓVIL */
@@ -218,7 +219,8 @@ body {
 
 .hero {
   min-height: 100vh;
-  background-color: #171717; /* similar a bg-neutral-900 */
+  background-color: #171717;
+  /* similar a bg-neutral-900 */
   width: 100%;
   display: flex;
   align-items: center;
@@ -879,7 +881,7 @@ footer {
   padding: 3rem 1rem;
 }
 
-footer > div {
+footer>div {
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -937,4 +939,8 @@ footer ul {
   margin-top: 2rem;
   color: #aaa;
   font-size: 0.85rem;
+}
+
+a {
+  text-decoration: none;
 }
