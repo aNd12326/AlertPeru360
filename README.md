@@ -4,10 +4,6 @@ este repositorio contiene el sitio web del proyecto AlertaPeru360, para hacer el
 
 ## que hace la carpeta .github/workflows
 
-la carpeta `.github/workflows` contiene un archivo yaml que define un workflow de github actions. este workflow se activa automaticamente cada vez que se hace un push a la rama principal (`main`). para esto lo sacamos de la misma documentacion de https://docs.github.com/es e igualmente del apoyo de una AI para los pasos de la configuracion en JOBS 
-
-el objetivo principal de este workflow es desplegar el contenido de la carpeta `public/` en github pages. para eso, se utiliza una accion llamada `peaceiris/actions-gh-pages`, que publica el sitio en la rama `gh-pages`.
-
 una vez que esto se ejecuta correctamente, github pages sirve el sitio desde la url del repositorio:  
 `https://and12326.github.io/AlertPeru360/` 
 
